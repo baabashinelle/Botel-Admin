@@ -1,11 +1,12 @@
 import React from "react";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
-import { AiOutlineHome } from "react-icons/ai";
-import { AiOutlineEye } from "react-icons/ai";
+import { AiOutlineHome, AiOutlineEye } from "react-icons/ai";
 import ViewRooms from "./ViewRooms";
 import Tabs from "./Tabs";
 import ViewHotels from "./ViewHotels";
+import AddRooms from "./AddRooms";
+import AddHotels from "./AddHotels";
 // import { FiLogOut } from "react-icons/fi";
 
 const SideBar = ({ setPage }) => {
@@ -46,10 +47,28 @@ const SideBar = ({ setPage }) => {
           <li className="px-8 py-2 rounded-md">
             <div
               className="flex items-center gap-4 cursor-pointer"
+              onClick={() => moveTo(AddRooms)}
+            >
+              <AiOutlineEye />
+              Add Rooms
+            </div>
+          </li>
+          <li className="px-8 py-2 rounded-md">
+            <div
+              className="flex items-center gap-4 cursor-pointer"
               onClick={() => moveTo(ViewHotels)}
             >
               <AiOutlineEye />
               View Hotels
+            </div>
+          </li>
+          <li className="px-8 py-2 rounded-md">
+            <div
+              className="flex items-center gap-4 cursor-pointer"
+              onClick={() => moveTo(AddHotels)}
+            >
+              <AiOutlineEye />
+              Add Hotels
             </div>
           </li>
         </ul>
