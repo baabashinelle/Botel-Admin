@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { AiOutlineHome, AiOutlineEye } from "react-icons/ai";
+import { MdOutlineAddBusiness } from "react-icons/md";
 import ViewRooms from "./ViewRooms";
 import Tabs from "./Tabs";
 import ViewHotels from "./ViewHotels";
@@ -49,7 +50,7 @@ const SideBar = ({ setPage }) => {
               className="flex items-center gap-4 cursor-pointer"
               onClick={() => moveTo(AddRooms)}
             >
-              <AiOutlineEye />
+              <MdOutlineAddBusiness />
               Add Rooms
             </div>
           </li>
@@ -67,7 +68,7 @@ const SideBar = ({ setPage }) => {
               className="flex items-center gap-4 cursor-pointer"
               onClick={() => moveTo(AddHotels)}
             >
-              <AiOutlineEye />
+              <MdOutlineAddBusiness />
               Add Hotels
             </div>
           </li>
