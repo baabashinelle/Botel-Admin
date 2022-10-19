@@ -6,10 +6,10 @@ import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<LoginPage />}></Route>
-      <Route path="/dashboard" element={<Dashboard />}></Route>
-    </Routes>
+      <Routes>
+        <Route path="/" element={<LoginPage />}></Route>
+        <Route path="/dashboard" element={<Dashboard />}></Route>
+      </Routes>
   );
 }
 
