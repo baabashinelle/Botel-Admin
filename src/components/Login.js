@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 
 const Login = () => {
@@ -20,7 +21,7 @@ const Login = () => {
         className="my-[0.5em] bg-bg-o px-[1em] py-[0.6em] text-white flex items-center justify-center gap-x-3"
         type="submit"
       >
-        LOGIN
+        <Link to='/dashboard'>LOGIN</Link>
       </button>
       <p className="text-right text-gray-500 underline">Forgot password?</p>
     </form>
