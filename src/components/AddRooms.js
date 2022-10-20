@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import Dashboard from "../components/Dashboard";
 import FileUpload from "./FileUpload/FileUpload";
+
 
 const AddRooms = () => {
   return (
@@ -35,7 +36,7 @@ const AddRooms = () => {
           ></textarea>
         </article>
         <article>
-          <FileUpload />
+          <FileUpload/>
         </article>
       </section>
     </Dashboard>
