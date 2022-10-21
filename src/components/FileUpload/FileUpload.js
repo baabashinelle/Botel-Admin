@@ -32,12 +32,17 @@ const FileUpload = () => {
           </button>
 
           {selectedImage && (
-            <div>
+            <div className="flex flex-col justify-center items-center">
               <img
                 src={URL.createObjectURL(selectedImage)}
                 alt="Upload Preview"
               />
-              <button onClick={removeSelectedImage}>Remove This Image</button>
+              <button
+                onClick={removeSelectedImage}
+                className="bg-bg-o text-white py-[0.4rem] px-[1rem] my-3 min-w-1/3"
+              >
+                Remove Image
+              </button>
             </div>
           )}
         </div>
