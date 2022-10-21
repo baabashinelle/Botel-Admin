@@ -7,7 +7,7 @@ const DashboardNav = () => {
       <div className="flex items-center justify-center gap-3">
         <div className="text-right flex-col flex items-end justify-center">
           <h3 className="font-extrabold">Howdy!</h3>
-          <p className="text-sm text-gray-600">User</p>
+          <p className="text-sm text-gray-600">Admin</p>
         </div>
         <div className="relative w-12 h-12">
           <img
