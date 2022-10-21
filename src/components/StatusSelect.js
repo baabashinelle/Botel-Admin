@@ -25,9 +25,12 @@ const customStyles = {
 const StatusSelect = () => {
   return (
     <div>
-        <Select options={options} styles={customStyles}/>
+      <Select
+        options={options}
+        styles={customStyles}
+      />
     </div>
-  )
+  );
 }
 
 export default StatusSelect
