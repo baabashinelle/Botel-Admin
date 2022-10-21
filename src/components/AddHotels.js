@@ -1,6 +1,7 @@
 import React from "react";
 import Dashboard from "../components/Dashboard";
 import FileUpload from "./FileUpload/FileUpload";
+import StatusSelect from "./StatusSelect";
 
 const AddHotels = () => {
   return (
@@ -30,14 +31,10 @@ const AddHotels = () => {
           <br></br>
           <label className="pb-2">
             Hotel status
-            <span className="text-gray-500 text-sm">
-              (Available / Unavailable)
-            </span>
           </label>
-          <input
-            type="text"
-            className="h-[3rem] px-[1rem] border-none focus:outline-bg-o bg-gray-100"
-          ></input>
+          <div>
+            <StatusSelect/>
+          </div>
           <br></br>
           <label className="pb-2">Hotel Description</label>
           <textarea className="min-h-[10rem] p-[1rem] border-none focus:outline-bg-o bg-gray-100"></textarea>
