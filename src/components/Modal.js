@@ -1,9 +1,8 @@
-import React , {useState} from "react";
+import React  from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
 const Modal = ({ Design, isOpen, handleCloseModal }) => {
-  const [isClose, setIsClose] = useState(false);
 
   return (
     <>

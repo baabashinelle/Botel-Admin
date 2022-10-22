@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import RoomItems from "../utils/roomsTable";
 import Modal from "./Modal";
 import ViewModalDesign from "./ViewModalDesign";
+import DeleteModalDesign from "./DeleteModalDesign";
 import { AiOutlineEye, AiOutlineDelete } from "react-icons/ai";
 import Dashboard from "../components/Dashboard";
 
 const RoomItem = ({ roomImg, name, country, status }) => {
   const [isOpenView, setIsOpenView] = useState(false);
-
-  
+  const [isOpenDelete, setIsOpenDelete] = useState(false);
 
   return (
     <article className="flex justify-between items-center py-[1em] border-b-2 ">
@@ -34,13 +34,19 @@ const RoomItem = ({ roomImg, name, country, status }) => {
             Design={ViewModalDesign}
           />
         )}
-
+        {isOpenDelete && (
+          <Modal
+            isOpen={isOpenDelete}
+            handleCloseModal={() => setIsOpenDelete(false)}
+            Design={DeleteModalDesign}
+          />
+        )}
         <AiOutlineEye
           onClick={() => setIsOpenView(true)}
           className="hover:text-gray-600 hover:scale-125"
         />
         <AiOutlineDelete
-          onClick={() => setIsOpenView(true)}
+          onClick={() => setIsOpenDelete(true)}
           className="hover:text-gray-600 hover:scale-125"
         />
       </div>
