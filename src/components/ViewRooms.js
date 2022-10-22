@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import RoomItems from "../utils/roomsTable";
 import Modal from "./Modal";
 import ViewModalDesign from "./ViewModalDesign";
-import { AiOutlineEye } from "react-icons/ai";
-import { MdOutlineBookmarkAdded } from "react-icons/md";
+import { AiOutlineEye, AiOutlineDelete } from "react-icons/ai";
 import Dashboard from "../components/Dashboard";
 
 const RoomItem = ({ roomImg, name, country, status }) => {
-  const [isOpen, setIsOpen] = useState(false);
   const [isOpenView, setIsOpenView] = useState(false);
-  const [isOpenBook, setIsOpenBook] = useState(false);
+
   
 
   return (
@@ -41,7 +39,7 @@ const RoomItem = ({ roomImg, name, country, status }) => {
           onClick={() => setIsOpenView(true)}
           className="hover:text-gray-600 hover:scale-125"
         />
-        <MdOutlineBookmarkAdded
+        <AiOutlineDelete
           onClick={() => setIsOpenView(true)}
           className="hover:text-gray-600 hover:scale-125"
         />
