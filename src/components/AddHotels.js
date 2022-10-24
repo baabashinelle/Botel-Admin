@@ -1,9 +1,28 @@
 import React from "react";
+import { ADD_HOTEL } from "../../util";
 import Dashboard from "../components/Dashboard";
+import { useStateValue } from "../context/stateProvider";
 import FileUpload from "./FileUpload/FileUpload";
 import StatusSelect from "./StatusSelect";
 
 const AddHotels = () => {
+  const [{}, dispatch] = useStateValue();
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    const hotel = {
+      name: "dfd"
+    }
+    ADD_HOTEL(hotel, (data)=> {
+      if (data.success) {
+        dispatch({
+          type: "ADD_HOTEL",
+          hotel: data.data,
+        })
+      }
+    })
+  }
   return (
     <Dashboard>
       <section className="flex flex-col justify-center items-center bg-white font-text px-[2rem] py-[2rem] m-[2rem] rounded-lg">

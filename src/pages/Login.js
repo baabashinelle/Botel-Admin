@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { RiAdminLine } from "react-icons/ri";
+import { FETCH_HOTELS } from "../../util";
 import Login from "../components/Login";
 import { useStateValue } from "../context/stateProvider";
 
