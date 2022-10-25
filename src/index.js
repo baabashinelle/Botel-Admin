@@ -6,6 +6,9 @@ import { BrowserRouter } from "react-router-dom";
 import { StateProvider } from "./context/stateProvider";
 import { initialState } from "./context/initialState";
 import reducer from "./context/reducer";
+import axios from "axios";
+
+axios.defaults.baseURL = "https://hotelapi.onrender.com/";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
