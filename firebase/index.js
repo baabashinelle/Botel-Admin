@@ -1,6 +1,6 @@
 import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
-import { storage } from "../firebase.config";
+import { storage } from "../src/firebase.config";
 
 /**
  * 
