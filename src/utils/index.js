@@ -2,6 +2,7 @@ import Axios from "./axios";
 
 export const FETCH_HOTELS = async (callback) => {
   const { data } = await Axios.get("/hotels");
+  console.log(data);
   callback(data);
 };
 
