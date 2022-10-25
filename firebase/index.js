@@ -2,6 +2,14 @@ import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from "firebas
 
 import { storage } from "../firebase.config";
 
+/**
+ * 
+ * @param {File} image 
+ * @param {string} storagePath 
+ * @param {func: (url:string) => void} callback 
+ * 
+ * 
+ */
 export const uploadImage = async (image, storagePath, callback) => {
   // new date to iso string remove : and . and replace with -
   const id = new Date().toISOString().replace(/:|\./g, "-");
@@ -36,6 +44,12 @@ export const uploadImage = async (image, storagePath, callback) => {
   );
 };
 
+
+/**
+ * 
+ * @param {string} storagePath
+ * 
+ */
 export const removeImage = async (imageURL) => {
     const deleteRef = ref(storage, imageURL);
     deleteObject(deleteRef).then(() => {
