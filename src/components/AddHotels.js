@@ -66,7 +66,7 @@ const AddHotels = () => {
             className="h-[3rem] px-[1rem] border-none focus:outline-bg-o bg-gray-100"
           ></input>
           <br></br>
-          <label className="pb-2">Hotel status</label>
+          <label className="pb-2">Hotel Status</label>
           <div>
             <StatusSelect />
           </div>

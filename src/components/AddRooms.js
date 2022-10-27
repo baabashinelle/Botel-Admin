@@ -1,9 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
+import { ADD_ROOM } from "../utils";
 import Dashboard from "../components/Dashboard";
+import { useStateValue } from "../context/stateProvider";
 import FileUpload from "./FileUpload/FileUpload";
 import StatusSelect from "./StatusSelect";
 
 const AddRooms = () => {
+  const [{}, dispatch] = useStateValue();
+
+  const handleChange = (e) => {
+    setRoom({ ...room, [e.target.name]: e.target.value });
+    console.log(room);
+  };
+  const [room, setRoom] = useState({
+    name: "",
+    price: 0,
+    desc: "",
+    image: "",
+    maxPeople: 0,
+    status: "",
+    roomNumber: "",
+  });
+
+  const submitHandler = () => {
+    ADD_ROOM(room, (data) => {
+      if (data.success) {
+        dispatch({
+          type: "ADD_ROOM",
+          room: data.data,
+        });
+      }
+    });
+  };
   return (
     <Dashboard>
       <section className="flex flex-col justify-center items-center bg-white font-text px-[2rem] py-[2rem] m-[2rem] rounded-lg">
@@ -16,30 +44,58 @@ const AddRooms = () => {
           <label className="pb-2">Name of Hotel</label>
           <input
             type="text"
-            name="hotelName"
-            onChange={(e) => {
-              console.log(e.target.value);
-            }}
+            name={"name"}
+            value={room.name}
+            onChange={handleChange}
             className="h-[3rem] px-[1rem] border-none focus:outline-bg-o bg-gray-100"
           ></input>
           <br></br>
-          <label className="pb-2">Country</label>
+          <label className="pb-2">Room Number</label>
           <input
             type="text"
+            name={"roomNumber"}
+            value={room.roomNumber}
+            onChange={handleChange}
             className="h-[3rem] px-[1rem] border-none focus:outline-bg-o bg-gray-100"
           ></input>
           <br></br>
-          <label className="pb-2">Hotel status</label>
+          <label className="pb-2">Maximum People Room Can Take</label>
+          <input
+            type="number"
+            name={"maxPeople"}
+            value={room.maxPeople}
+            onChange={handleChange}
+            className="h-[3rem] px-[1rem] border-none focus:outline-bg-o bg-gray-100"
+          ></input>
+          <br></br>
+          <label className="pb-2">Price</label>
+          <input
+            type="number"
+            name={"price"}
+            value={room.price}
+            onChange={handleChange}
+            className="h-[3rem] px-[1rem] border-none focus:outline-bg-o bg-gray-100"
+          ></input>
+          <br></br>
+          <label className="pb-2">Hotel Status</label>
           <div>
             <StatusSelect />
           </div>
           <br></br>
           <label className="pb-2">Room Description</label>
-          <textarea className="min-h-[10rem] p-[1rem] border-none focus:outline-bg-o bg-gray-100"></textarea>
+          <textarea
+            name={"desc"}
+            value={room.desc}
+            onChange={handleChange}
+            className="min-h-[10rem] p-[1rem] border-none focus:outline-bg-o bg-gray-100"
+          ></textarea>
           <article className="pt-10">
             <FileUpload />
           </article>
-          <button className="bg-bg-o text-white py-[0.7rem] mt-8">
+          <button
+            className="bg-bg-o text-white py-[0.7rem] mt-8"
+            onClick={submitHandler}
+          >
             Add Room
           </button>
         </article>
