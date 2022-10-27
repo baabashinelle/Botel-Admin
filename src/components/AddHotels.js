@@ -39,7 +39,7 @@ const AddHotels = () => {
           <label className="pb-2">Name of Hotel</label>
           <input
             type="text"
-            name="hotelName"
+            name="name"
             onChange={(e) => {
               console.log(e.target.value);
             }}
@@ -49,12 +49,14 @@ const AddHotels = () => {
           <label className="pb-2">Country</label>
           <input
             type="text"
+            name="country"
             className="h-[3rem] px-[1rem] border-none focus:outline-bg-o bg-gray-100"
           ></input>
           <br></br>
           <label className="pb-2">City</label>
           <input
             type="text"
+            name="city"
             className="h-[3rem] px-[1rem] border-none focus:outline-bg-o bg-gray-100"
           ></input>
           <br></br>
