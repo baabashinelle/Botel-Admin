@@ -12,7 +12,11 @@ const AddHotels = () => {
     e.preventDefault();
 
     const hotel = {
-      name: "dfd",
+      city: "",
+      country: "",
+      name: "",
+      photo: "",
+      status: "",
     };
     ADD_HOTEL(hotel, (data) => {
       if (data.success) {
@@ -48,13 +52,17 @@ const AddHotels = () => {
             className="h-[3rem] px-[1rem] border-none focus:outline-bg-o bg-gray-100"
           ></input>
           <br></br>
+          <label className="pb-2">City</label>
+          <input
+            type="text"
+            className="h-[3rem] px-[1rem] border-none focus:outline-bg-o bg-gray-100"
+          ></input>
+          <br></br>
           <label className="pb-2">Hotel status</label>
           <div>
             <StatusSelect />
           </div>
           <br></br>
-          <label className="pb-2">Hotel Description</label>
-          <textarea className="min-h-[10rem] p-[1rem] border-none focus:outline-bg-o bg-gray-100"></textarea>
           <article className="pt-10">
             <FileUpload />
           </article>

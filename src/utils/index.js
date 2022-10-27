@@ -18,9 +18,9 @@ export const FETCH_DATA = async (url, callback) => {
 
 export const ADD_HOTEL = async (hotel, callback) => {
   try{
-
     const { data } = await Axios.post("hotels", hotel);
     callback(data);
+    console.log(data)
   }catch(err){
     console.log(err)
   }
