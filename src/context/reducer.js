@@ -10,6 +10,11 @@ const reducer = (state, action) => {
         ...state,
         hotels: action.hotels,
       };
+    case actionTypes.SET_ROOMS:
+      return{
+        ...state,
+        rooms: action.rooms
+      };
     default:
       return state;
   }
