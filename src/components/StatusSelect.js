@@ -22,12 +22,16 @@ const customStyles = {
   }),
 };
 
+
 const StatusSelect = () => {
   return (
     <div>
       <Select
         options={options}
         styles={customStyles}
+        name="status"
+        // value={hotel.status}
+        // onChange={handleChange}
       />
     </div>
   );

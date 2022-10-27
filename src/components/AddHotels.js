@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { ADD_HOTEL } from "../utils";
 import Dashboard from "../components/Dashboard";
 import { useStateValue } from "../context/stateProvider";
@@ -8,16 +8,19 @@ import StatusSelect from "./StatusSelect";
 const AddHotels = () => {
   const [{}, dispatch] = useStateValue();
 
-  const submitHandler = (e) => {
-    e.preventDefault();
+  const handleChange = (e) => {
+    setHotel({...hotel, [e.target.name]: e.target.value});
+    console.log(hotel);
+  }
+  const [hotel, setHotel] = useState({
+    city: "",
+    country: "",
+    name: "",
+    photo: "",
+    status: "",
+  });
 
-    const hotel = {
-      city: "",
-      country: "",
-      name: "",
-      photo: "",
-      status: "",
-    };
+  const submitHandler = () => {
     ADD_HOTEL(hotel, (data) => {
       if (data.success) {
         dispatch({
@@ -39,24 +42,27 @@ const AddHotels = () => {
           <label className="pb-2">Name of Hotel</label>
           <input
             type="text"
-            name="name"
-            onChange={(e) => {
-              console.log(e.target.value);
-            }}
+            value={hotel.name}
+            name={"name"}
+            onChange={handleChange}
             className="h-[3rem] px-[1rem] border-none focus:outline-bg-o bg-gray-100"
           ></input>
           <br></br>
           <label className="pb-2">Country</label>
           <input
             type="text"
-            name="country"
+            value={hotel.country}
+            name={"country"}
+            onChange={handleChange}
             className="h-[3rem] px-[1rem] border-none focus:outline-bg-o bg-gray-100"
           ></input>
           <br></br>
           <label className="pb-2">City</label>
           <input
             type="text"
-            name="city"
+            value={hotel.city}
+            name={"city"}
+            onChange={handleChange}
             className="h-[3rem] px-[1rem] border-none focus:outline-bg-o bg-gray-100"
           ></input>
           <br></br>
@@ -68,7 +74,10 @@ const AddHotels = () => {
           <article className="pt-10">
             <FileUpload />
           </article>
-          <button className="bg-bg-o text-white py-[0.7rem] mt-8">
+          <button
+            className="bg-bg-o text-white py-[0.7rem] mt-8"
+            onClick={submitHandler}
+          >
             Add Hotel
           </button>
         </article>
