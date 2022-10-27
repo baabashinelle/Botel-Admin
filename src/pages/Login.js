@@ -1,62 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { RiAdminLine } from "react-icons/ri";
+
 import { FETCH_HOTELS } from "../utils";
 import Login from "../components/Login";
+import { RiAdminLine } from "react-icons/ri";
 import { useStateValue } from "../context/stateProvider";
 
 const LoginPage = () => {
-  // const handleChange = (e) => {
-  //   setData({ ...data, [e.target.name]: e.target.value });
-  //   console.log(data);
-  // };
-  // const [loading, setLoading] = useState(false)
-  // const [hotel, setHotel] = useState([]);
-  // const [data, setData] = useState({
-  //   hotelName: "",
-  //   country: "",
-  //   roomStatus: true,
-  //   roomDescription: "",
-  //   image: "",
-  // });
 
-  // const fetchHotels = () => {
-  //   axios
-  //     .get("/hotels")
-  //     .then(({ data }) => {
-  //       console.log(data);
-  //       setHotel(data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-  // useEffect(() => {
-  //   fetchHotels();
-  // }, []);
-
-  // const addHotels = () => {
-  //   setLoading(true)
-  //   axios
-  //     .post("/api/admin/createHotel", data)
-  //     .then(({ data }) => {
-  //       console.log(data);
-  //       setLoading(false);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //       setLoading(false);
-  //     });
-  // };
-  const [{}, dispatch] = useStateValue();
   useEffect(() => {
     FETCH_HOTELS((data) => {
-      console.log(data);
-      if (data.success) {
-        dispatch({
-          type: "SET_HOTELS",
-          hotels: data.data,
-        });
-      }
+      console.log(data)
+
     });
   }, []);
   return (
