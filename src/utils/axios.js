@@ -2,7 +2,7 @@ import axios from "axios"
 
 const Axios =  axios.create({
     baseURL: "https://ibookings-api.herokuapp.com/",
-    withCredentials: true,
+    withCredentials: true,    
 })
 
 export default Axios;
