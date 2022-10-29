@@ -19,7 +19,10 @@ const reducer = (state, action) => {
     case actionTypes.ADD_ROOM:
       return{
         ...state,
-        rooms: [...state.rooms, action.room]
+        rooms: [
+          ...state.rooms,
+          action.room
+        ]
       };
     default:
       return state;
