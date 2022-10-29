@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const Axios =  axios.create({
-    baseURL: "https://ibookings-api.herokuapp.com/",
+    baseURL: process.env.REACT_APP_API_BASE_URL,
     withCredentials: true,    
 })
 
