@@ -4,33 +4,51 @@ import Dashboard from "../components/Dashboard";
 import { useStateValue } from "../context/stateProvider";
 import FileUpload from "./FileUpload/FileUpload";
 import StatusSelect from "./StatusSelect";
+import { uploadImage } from "../firebase";
+import HotelSelector from "./HotelSelector";
 
 const AddRooms = () => {
   const [{}, dispatch] = useStateValue();
 
   const handleChange = (e) => {
-    setRoom({ ...room, [e.target.name]: e.target.value });
-    console.log(room);
+    const newRoom = { ...room, [e.target.name]: e.target.value };
+    setRoom(newRoom);
+    console.log(newRoom);
   };
   const [room, setRoom] = useState({
     name: "",
     price: 0,
     desc: "",
-    image: "",
+    image: null,
     maxPeople: 0,
-    status: "",
     roomNumber: "",
+    status: "Available"
   });
 
-  const submitHandler = () => {
-    ADD_ROOM(room, (data) => {
-      if (data.success) {
-        dispatch({
-          type: "ADD_ROOM",
-          room: data.data,
-        });
-      }
-    });
+  const submitHandler = async() => {
+    // Step1: upload image to firebase storage and get the url
+    // Step2: Replace the room.image with the url
+    // Step3: Send the room object to the backend
+
+    // this function will upload the image to firebase storage and return the url
+    // check the /firebase/index.js file for more details
+    await uploadImage(room.image, "rooms", async(url) => {
+      // Step2: Replace the room.image with the url
+      // in this callback function, we will get the url
+      // and we will replace the room.image with the url
+      const newRoom = { ...room, image: url };
+      setRoom(newRoom); // update the room object
+
+      // Step3: Send the room object to the backend
+      await ADD_ROOM(room, (data) => {
+        if (data.success) {
+          dispatch({
+            type: "ADD_ROOM",
+            room: data.data,
+          });
+        }
+      });
+    })
   };
   return (
     <Dashboard>
@@ -41,14 +59,8 @@ const AddRooms = () => {
           required&#41;
         </p>
         <article className="flex flex-col gap-[0.1rem] w-1/2 pt-10">
-          <label className="pb-2">Name of Hotel</label>
-          <input
-            type="text"
-            name={"name"}
-            value={room.name}
-            onChange={handleChange}
-            className="h-[3rem] px-[1rem] border-none focus:outline-bg-o bg-gray-100"
-          ></input>
+          <label className="pb-2">Select Hotel</label>
+          <HotelSelector data={room} setData={setRoom} />
           <br></br>
           <label className="pb-2">Room Number</label>
           <input
@@ -79,7 +91,7 @@ const AddRooms = () => {
           <br></br>
           <label className="pb-2">Hotel Status</label>
           <div>
-            <StatusSelect />
+            <StatusSelect data={room} setData={setRoom} />
           </div>
           <br></br>
           <label className="pb-2">Room Description</label>
@@ -90,7 +102,7 @@ const AddRooms = () => {
             className="min-h-[10rem] p-[1rem] border-none focus:outline-bg-o bg-gray-100"
           ></textarea>
           <article className="pt-10">
-            <FileUpload />
+            <FileUpload data={room} setData={setRoom} />
           </article>
           <button
             className="bg-bg-o text-white py-[0.7rem] mt-8"
