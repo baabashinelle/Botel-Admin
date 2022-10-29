@@ -23,15 +23,22 @@ const customStyles = {
 };
 
 
-const StatusSelect = () => {
+
+const StatusSelect = ({data, setData}) => {
+  const [selectedOption, setSelectedOption] = React.useState(options[0]);
+  const handleChange = (selectedOption) => {
+    setSelectedOption(selectedOption);
+    setData({...data, status: selectedOption.value})
+    console.log(`Room Status:`, selectedOption.value);
+  }
   return (
     <div>
       <Select
         options={options}
         styles={customStyles}
         name="status"
-        // value={hotel.status}
-        // onChange={handleChange}
+        value={selectedOption}
+        onChange={handleChange}
       />
     </div>
   );
