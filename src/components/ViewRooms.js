@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import RoomItems from "../utils/roomsTable";
+import { useStateValue } from "../context/stateProvider";
 import Modal from "./Modal";
 import ViewModalDesign from "./ViewModalDesign";
 import DeleteModalDesign from "./DeleteModalDesign";
@@ -7,6 +8,7 @@ import { AiOutlineEye, AiOutlineDelete } from "react-icons/ai";
 import Dashboard from "../components/Dashboard";
 
 const RoomItem = ({ roomImg, name, country, status }) => {
+  const [{rooms}, dispatch] = useStateValue();
   const [isOpenView, setIsOpenView] = useState(false);
   const [isOpenDelete, setIsOpenDelete] = useState(false);
 
