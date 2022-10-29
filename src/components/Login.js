@@ -19,7 +19,7 @@ const Login = () => {
       <br></br>
       <button
         className="my-[0.5em] bg-bg-o px-[1em] py-[0.6em] text-white flex items-center justify-center gap-x-3"
-        type="submit"
+        type="button"
       >
         <Link to='/home'>LOGIN</Link>
       </button>
