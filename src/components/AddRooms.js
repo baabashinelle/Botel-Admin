@@ -6,9 +6,10 @@ import FileUpload from "./FileUpload/FileUpload";
 import StatusSelect from "./StatusSelect";
 import { uploadImage } from "../firebase";
 import HotelSelector from "./HotelSelector";
+import { toast } from "react-toastify";
 
 const AddRooms = () => {
-  const [{}, dispatch] = useStateValue();
+  const [{hotels}, dispatch] = useStateValue();
 
   const handleChange = (e) => {
     const newRoom = { ...room, [e.target.name]: e.target.value };
@@ -16,7 +17,7 @@ const AddRooms = () => {
     console.log(newRoom);
   };
   const [room, setRoom] = useState({
-    name: "",
+    hotel: hotels[0]._id,
     price: 0,
     desc: "",
     image: null,
@@ -36,20 +37,35 @@ const AddRooms = () => {
       // Step2: Replace the room.image with the url
       // in this callback function, we will get the url
       // and we will replace the room.image with the url
-      const newRoom = { ...room, image: url };
-      setRoom(newRoom); // update the room object
 
       // Step3: Send the room object to the backend
-      await ADD_ROOM(room, (data) => {
+      await ADD_ROOM(room, url, (data) => {
         if (data.success) {
+          clearForm();
+
+          // dispatch data to context state
           dispatch({
             type: "ADD_ROOM",
             room: data.data,
           });
+          toast.success("Room Added Successfully")
         }
       });
     })
   };
+  const clearForm = () => {
+    setRoom(
+      {
+        hotel: hotels[0]._id,
+        price: 0,
+        desc: "",
+        image: null,
+        maxPeople: 0,
+        roomNumber: "",
+        status: "Available"
+      }
+    )
+  }
   return (
     <Dashboard>
       <section className="flex flex-col justify-center items-center bg-white font-text px-[2rem] py-[2rem] m-[2rem] rounded-lg">
@@ -107,6 +123,7 @@ const AddRooms = () => {
           <button
             className="bg-bg-o text-white py-[0.7rem] mt-8"
             onClick={submitHandler}
+            type="button"
           >
             Add Room
           </button>
