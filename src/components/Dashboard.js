@@ -1,7 +1,6 @@
 import React from "react";
 import SideBar from "./SideBar";
 import DashboardNav from "./DashboardNav";
-import { useStateValue } from "../context/stateProvider";
 
 
 const Dashboard = ({ children }) => {

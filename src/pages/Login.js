@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import { FETCH_DATA } from "../utils";
 import Login from "../components/Login";
 import { RiAdminLine } from "react-icons/ri";
