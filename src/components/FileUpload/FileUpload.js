@@ -4,8 +4,6 @@ import { AiFillPlusCircle } from "react-icons/ai";
 
 const FileUpload = ({data, setData}) => {
   
-
-
   // This function will be triggered when the file field change
   const imageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {

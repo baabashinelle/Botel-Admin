@@ -16,12 +16,19 @@ export const FETCH_DATA = async (url, callback) => {
   }
 };
 
-export const ADD_HOTEL = async (hotel, callback) => {
+export const ADD_HOTEL = async (hotel, url, callback) => {
   try {
-    const { data } = await Axios.post("hotels", hotel);
+    const { data } = await Axios({
+      url: "hotels",
+      method: "POST",
+      data: {
+        ...hotel,
+        image:url
+      }
+    });
     callback(data);
-    console.log(data);
   } catch (err) {
+    removeImage(url);
     console.log(err);
   }
 };

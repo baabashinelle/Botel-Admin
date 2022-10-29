@@ -14,7 +14,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <StateProvider initialState={initialState} reducer={reducer}>
-        <ToastContainer position="top-center" duration="3000" />
+        <ToastContainer duration="3000" />
           <App />
       </StateProvider>
     </BrowserRouter>

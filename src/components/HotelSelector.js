@@ -24,11 +24,11 @@ const customStyles = {
 const HotelSelector = ({data, setData}) => {
   const [{hotels}, dispatch] = useStateValue();
 
-  const options = hotels.map((hotel) => {
+  const options = hotels.length > 0? hotels.map((hotel) => {
     return { value: hotel._id, label: hotel.name };
-  })
+  }): [];
 
-  const [selectedOption, setSelectedOption] = React.useState(options[0]);
+  const [selectedOption, setSelectedOption] = React.useState(options[0]  || null);
   const handleChange = (selectedOption) => {
     setSelectedOption(selectedOption);
     setData({...data, hotel: selectedOption.value})

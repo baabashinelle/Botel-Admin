@@ -17,7 +17,7 @@ const AddRooms = () => {
     console.log(newRoom);
   };
   const [room, setRoom] = useState({
-    hotel: hotels[0]._id,
+    hotel: hotels[0]?._id,
     price: 0,
     desc: "",
     image: null,
@@ -56,7 +56,7 @@ const AddRooms = () => {
   const clearForm = () => {
     setRoom(
       {
-        hotel: hotels[0]._id,
+        hotel: hotels[0]?._id,
         price: 0,
         desc: "",
         image: null,

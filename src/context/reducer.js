@@ -2,6 +2,7 @@ const actionTypes = {
   SET_HOTELS: "SET_HOTELS",
   SET_ROOMS: "SET_ROOMS",
   ADD_ROOM: "ADD_ROOM",
+  ADD_HOTEL: "ADD_HOTEL",
 };
 
 const reducer = (state, action) => {
@@ -12,17 +13,19 @@ const reducer = (state, action) => {
         hotels: action.hotels,
       };
     case actionTypes.SET_ROOMS:
-      return{
+      return {
         ...state,
-        rooms: action.rooms
+        rooms: action.rooms,
       };
     case actionTypes.ADD_ROOM:
-      return{
+      return {
         ...state,
-        rooms: [
-          ...state.rooms,
-          action.room
-        ]
+        rooms: [...state.rooms, action.room],
+      };
+    case actionTypes.ADD_HOTEL:
+      return {
+        ...state,
+        hotels: [...state.hotels, action.hotel],
       };
     default:
       return state;

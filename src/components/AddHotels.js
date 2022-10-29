@@ -1,33 +1,50 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { ADD_HOTEL } from "../utils";
 import Dashboard from "../components/Dashboard";
 import { useStateValue } from "../context/stateProvider";
 import FileUpload from "./FileUpload/FileUpload";
 import StatusSelect from "./StatusSelect";
+import { toast } from "react-toastify";
+import { uploadImage } from "../firebase";
 
 const AddHotels = () => {
   const [{}, dispatch] = useStateValue();
 
   const handleChange = (e) => {
-    setHotel({...hotel, [e.target.name]: e.target.value});
-    console.log(hotel);
-  }
+    const newHotel = { ...hotel, [e.target.name]: e.target.value };
+    setHotel(newHotel);
+    console.log(newHotel);
+  };
   const [hotel, setHotel] = useState({
     city: "",
     country: "",
     name: "",
-    image: "",
+    image: null,
     status: "Available",
   });
 
-  const submitHandler = () => {
-    ADD_HOTEL(hotel, (data) => {
-      if (data.success) {
-        dispatch({
-          type: "ADD_HOTEL",
-          hotel: data.data,
-        });
-      }
+  const submitHandler = async () => {
+    await uploadImage(hotel.image, "hotels", async (url) => {
+      await ADD_HOTEL(hotel, url, (data) => {
+        if (data.success) {
+           clearForm();
+          dispatch({
+            type: "ADD_HOTEL",
+            hotel: data.data,
+          });
+          toast.success("Hotel Added Successfully");
+        }
+      });
+    });
+  };
+
+  const clearForm = () => {
+    setHotel({
+      city: "",
+      country: "",
+      name: "",
+      image: null,
+      status: "Available",
     });
   };
   return (
