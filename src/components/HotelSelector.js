@@ -1,10 +1,7 @@
 import React from 'react'
 import Select from "react-select";
+import { useStateValue } from '../context/stateProvider';
 
-const options = [
-  { value: "Available", label: "Available" },
-  { value: "Unavailable", label: "Unavailable" },
-];
 
 const customStyles = {
   option: (provided, state) => ({
@@ -24,12 +21,18 @@ const customStyles = {
 
 
 
-const StatusSelect = ({data, setData}) => {
+const HotelSelector = ({data, setData}) => {
+  const [{hotels}, dispatch] = useStateValue();
+
+  const options = hotels.map((hotel) => {
+    return { value: hotel._id, label: hotel.name };
+  })
+
   const [selectedOption, setSelectedOption] = React.useState(options[0]);
   const handleChange = (selectedOption) => {
     setSelectedOption(selectedOption);
-    setData({...data, status: selectedOption.value})
-    console.log(`Room Status:`, selectedOption.value);
+    setData({...data, hotel: selectedOption.value})
+    console.log(`Hotel Selected:`, selectedOption.value);
   }
   return (
     <div>
@@ -44,4 +47,4 @@ const StatusSelect = ({data, setData}) => {
   );
 }
 
-export default StatusSelect
+export default HotelSelector

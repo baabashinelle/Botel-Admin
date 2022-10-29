@@ -16,8 +16,8 @@ const AddHotels = () => {
     city: "",
     country: "",
     name: "",
-    photo: "",
-    status: "",
+    image: "",
+    status: "Available",
   });
 
   const submitHandler = () => {
@@ -68,11 +68,11 @@ const AddHotels = () => {
           <br></br>
           <label className="pb-2">Hotel Status</label>
           <div>
-            <StatusSelect />
+            <StatusSelect data={hotel} setData={setHotel} />
           </div>
           <br></br>
           <article className="pt-10">
-            <FileUpload />
+            <FileUpload data={hotel} setData={setHotel} />
           </article>
           <button
             className="bg-bg-o text-white py-[0.7rem] mt-8"

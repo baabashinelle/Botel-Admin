@@ -2,22 +2,22 @@ import React, { useState } from "react";
 import { AiFillPlusCircle } from "react-icons/ai";
 
 
-const FileUpload = () => {
-  const [selectedImage, setSelectedImage] = useState();
+const FileUpload = ({data, setData}) => {
   
 
 
   // This function will be triggered when the file field change
   const imageChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
-      setSelectedImage(e.target.files[0]);
-      // setSelectedImage({[e.target.name]: e.target.files[0]});
+      setData({...data, image: e.target.files[0]})
+      console.log(e.target.files[0])
     }
   };
 
   // This function will be triggered when the "Remove This Image" button is clicked
   const removeSelectedImage = () => {
-    setSelectedImage();
+    setData({...data, image: null})
+    console.log("Image Removed")
   };
 
   return (
@@ -35,10 +35,10 @@ const FileUpload = () => {
             Upload
           </button>
 
-          {selectedImage && (
+          {data.image && (
             <div className="flex flex-col justify-center items-center">
               <img
-                src={URL.createObjectURL(selectedImage)}
+                src={URL.createObjectURL(data.image)}
                 alt="Upload Preview"
               />
               <button
