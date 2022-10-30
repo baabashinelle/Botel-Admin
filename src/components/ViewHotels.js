@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useStateValue } from "../context/stateProvider";
 import Modal from "./Modal";
-import ViewModalDesign from "./ViewModalDesign";
+import ViewHotelModal from "./ViewHotelModal";
 import DeleteModalDesign from "./DeleteModalDesign";
 import { AiOutlineEye, AiOutlineDelete } from "react-icons/ai";
 import Dashboard from "./Dashboard";
@@ -31,7 +31,7 @@ const HotelItem = ({ hotelImg, name, country, status, city }) => {
           <Modal
             isOpen={isOpenView}
             handleCloseModal={() => setIsOpenView(false)}
-            Design={ViewModalDesign}
+            Design={ViewHotelModal}
           />
         )}
         {isOpenDelete && (

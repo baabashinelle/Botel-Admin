@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useStateValue } from "../context/stateProvider";
 import Modal from "./Modal";
-import ViewModalDesign from "./ViewModalDesign";
+import ViewRoomModal from "./ViewRoomModal";
 import DeleteModalDesign from "./DeleteModalDesign";
 import { AiOutlineEye, AiOutlineDelete } from "react-icons/ai";
 import Dashboard from "../components/Dashboard";
@@ -31,7 +31,7 @@ const RoomItem = ({ roomImg, name, price, status }) => {
           <Modal
             isOpen={isOpenView}
             handleCloseModal={() => setIsOpenView(false)}
-            Design={ViewModalDesign}
+            Design={ViewRoomModal}
           />
         )}
         {isOpenDelete && (
