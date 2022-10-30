@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import HotelItems from "../utils/hotelsTable";
+import { useStateValue } from "../context/stateProvider";
 import Modal from "./Modal";
 import ViewModalDesign from "./ViewModalDesign";
 import DeleteModalDesign from "./DeleteModalDesign";
 import { AiOutlineEye, AiOutlineDelete } from "react-icons/ai";
 import Dashboard from "./Dashboard";
 
-const HotelItem = ({ hotelImg, name, country, status }) => {
+const HotelItem = ({ hotelImg, name, country, status, city }) => {
   const [isOpenView, setIsOpenView] = useState(false);
   const [isOpenDelete, setIsOpenDelete] = useState(false);
   
@@ -16,7 +16,7 @@ const HotelItem = ({ hotelImg, name, country, status }) => {
         <img src={hotelImg} className="w-[5rem] h-[5rem] rounded-md" />
         <div>
           <h3 className="font-bold w-[20ch]">{name}</h3>
-          <p className="text-xs text-gray-400">{country}</p>
+          <p className="text-xs text-gray-400">{country}, {city}</p>
         </div>
       </div>
       <div>
@@ -55,16 +55,18 @@ const HotelItem = ({ hotelImg, name, country, status }) => {
 };
 
 const ViewHotels = () => {
+  const [{ hotels }, dispatch] = useStateValue();
   return (
     <Dashboard>
       <div className="flex flex-col justify-center bg-white font-text px-[2em] py-[1em] m-[2em] rounded-lg">
         <h1 className="border-b-2 font-bold text-lg pb-[0.8em]">All Hotels</h1>
-        {HotelItems.map((item, index) => (
+        {hotels.map((hotel, index) => (
           <HotelItem
-            hotelImg={item.hotelImg}
-            name={item.name}
-            country={item.country}
-            status={item.status}
+            hotelImg={hotel.image}
+            name={hotel.name}
+            country={hotel.country}
+            city={hotel.city}
+            status={hotel.status}
             key={index}
           />
         ))}
