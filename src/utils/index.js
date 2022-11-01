@@ -49,3 +49,12 @@ export const ADD_ROOM = async (room, url, callback) => {
     console.log(err);
   }
 };
+
+export const getHotelName = (roomid, hotels) => {
+  const hotel = hotels.map((hotel) => {
+    return hotel.rooms.map((room) => {
+      return room == roomid ? hotel.name : null;
+    });
+  });
+  return hotel;
+};

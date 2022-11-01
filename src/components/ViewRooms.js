@@ -5,17 +5,19 @@ import ViewRoomModal from "./ViewRoomModal";
 import DeleteModalDesign from "./DeleteModalDesign";
 import { AiOutlineEye, AiOutlineDelete } from "react-icons/ai";
 import Dashboard from "../components/Dashboard";
+import { getHotelName } from "../utils";
 
-const RoomItem = ({ roomImg, name, price, status }) => {
+const RoomItem = ({ roomImg, roomid, price, status }) => {
   const [isOpenView, setIsOpenView] = useState(false);
   const [isOpenDelete, setIsOpenDelete] = useState(false);
+    const [{ hotels }, dispatch] = useStateValue();
 
   return (
     <article className="flex justify-between items-center py-[1em] border-b-2 ">
       <div className="flex items-center gap-6 w-[20%]">
         <img src={roomImg} className="w-[5rem] h-[5rem] rounded-md" />
         <div>
-          <h3 className="w-[20ch] font-bold">{name}</h3>
+          <h3 className="w-[20ch] font-bold">{getHotelName(roomid, hotels)}</h3>
           <p className="text-xs text-gray-400">Price: {price}</p>
         </div>
       </div>
@@ -63,9 +65,9 @@ const ViewRooms = () => {
         {rooms.map((room, index) => (
           <RoomItem
             roomImg={room.image}
-            name={room.hotel}
             price={room.price}
             status={room.status}
+            roomid={room._id}
             key={index}
           />
         ))}
